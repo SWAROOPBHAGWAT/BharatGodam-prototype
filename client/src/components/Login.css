@@ -1,0 +1,35 @@
+body {
+    background-image: url("https://5.imimg.com/data5/HU/TJ/WB/ANDROID-79562439/product-jpeg-500x500.png");
+    background-size: cover;
+    }
+.container {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #e67e10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  .card-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .user-card {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    margin: 0 10px;
+    user-select: none;
+    transition: background-color 0.2s;
+  }
+  
+  .user-card:hover {
+    background-color: #e67e10;
+  }
+  
+  .active {
+    background-color: #e67e10;
+    color: white;
+  }
+  
