@@ -1,5 +1,7 @@
 import React from 'react';
 import './Dashboard.css'; // Import your CSS file
+import { Link } from 'react-router-dom';
+
 
 function Dashboard() {
   return (
@@ -17,14 +19,16 @@ function Dashboard() {
       <span id="menu">
         <img style={{ width: '25px' }} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR11WXR-a18XfNZknL7S4lu0lLyC4aWZPY4sLd4wNHUNv9So2gd" alt="MENU" />
       </span>
-      <nav>
-        <ul>
-          <li> <a href="#"> HOME </a> </li>
-          <li> <a href="#"> ABOUT US</a> </li>
-          <li> <a href="#" className="signin"> SIGN IN</a> </li>
-          <li> <a href="#" className="signup"> SIGN UP</a> </li>
-        </ul>
-      </nav>
+      
+<nav>
+  <ul>
+    <li><a href="/">HOME</a></li>
+    <li><a href="#">ABOUT US</a></li>
+    {/* Update the SIGN IN link to use Link */}
+    <li><Link to="/login" className="signin">SIGN IN</Link></li>
+    <li><a href="#" className="signup">SIGN UP</a></li>
+  </ul>
+</nav>
       {/* Navigation Bar */}
 
       {/* Hero Image */}
