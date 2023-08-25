@@ -7,13 +7,29 @@
     border-radius: 10px;
     background-color: #e67e10;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
     }
   .card-container {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
   }
-  
+ .link-to-signup {
+  margin-top: 20px; /* Add some space between the form and the link */
+}
+button {
+  width: 40%;
+  margin-left: 10%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: rgb(28, 28, 28);
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
   .user-card {
     cursor: pointer;
     padding: 10px;

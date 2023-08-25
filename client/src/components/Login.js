@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import './Login.css';
-
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [userType, setUserType] = useState('farmer');
-  const [username, setUsername] = useState('');
-  const [businessName, setWarehouseId] = useState('');
+  const [email, setEmail] = useState('');  
   const [adminId, setAdminId] = useState(''); 
   const [password, setPassword] = useState('');
 
@@ -15,12 +14,12 @@ const Login = () => {
       case 'farmer':
         // Perform client login logic here
         
-        console.log('Username:', username);
+        console.log('Email:', email);
         console.log('Password:', password);
         break;
       case 'warehouse owner':
         // Perform business login logic here
-        console.log('Warehouse Id.:', businessName);
+        console.log('Email:', email);
         
         console.log('Password:', password);
         break;
@@ -69,12 +68,14 @@ const Login = () => {
           <>
            
             <div>
-              <label>Username:</label>
+            <label>Email:</label>
               <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                placeholder="Enter a valid email id"
               />
             </div>
           </>
@@ -82,12 +83,14 @@ const Login = () => {
         {userType === 'warehouse owner' && (
           <>
             <div>
-              <label>Warehouse Id:</label>
+            <label>Email:</label>
               <input
-                type="text"
-                value={setWarehouseId}
-                onChange={(e) => setWarehouseId(e.target.value)}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                placeholder="Enter a valid email id"
               />
             </div>
            
@@ -117,7 +120,7 @@ const Login = () => {
         </div>
         <button type="submit">Login</button>
       </form>
-     
+      <Link to="/signup">Sign Up</Link>
     </div>
     
   );
