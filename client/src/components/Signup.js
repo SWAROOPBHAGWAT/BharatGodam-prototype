@@ -10,10 +10,10 @@ const Signup = () => {
   const [mobile, setMobile] = useState('')
   const [email, setEmail] = useState('')
   const [document, setDocument] = useState('')
-  const [WarehouseOwnerName, setWarehouseOwnerName] = useState('');
+  const [WarehouseName, setWarehouseName] = useState('');
   const [adminId, setAdminId] = useState('');
   const [password, setPassword] = useState('');
-  const [warehouseType, setWarehouseType] = useState('');
+  const [warehouseType, setWarehouseType] = useState('dry');
 
 
   const handleLogin = (e) => {
@@ -21,7 +21,7 @@ const Signup = () => {
     switch (userType) {
       case 'farmer':
         // Perform client login logic here
-
+        console.log('user type',userType)
         console.log('Name:', name);
         console.log('Password:', password);
         console.log('Address:', address);
@@ -30,12 +30,18 @@ const Signup = () => {
         break;
       case 'warehouse owner':
         // Perform business login logic here
-        console.log('Warehouse Owner Name:', WarehouseOwnerName);
-
+        console.log('Warehouse Name:', WarehouseName);
+        console.log('user type',userType)
         console.log('Password:', password);
+        console.log('Address:', address);
+        console.log('Mobile:', mobile)
+        console.log('Kyc:', kyc)
+        console.log('Documents:',document)
+        console.log('WarehouseType:',warehouseType)
         break;
       case 'admin':
         // Perform admin login logic here
+        console.log('user type',userType)
         console.log('Admin ID:', adminId);
         console.log('Admin Password:', password);
         break;
@@ -101,7 +107,7 @@ const Signup = () => {
                 required
               />
 
-              <label>Mobile:</label>
+              <label>Mobile No:</label>
               <input
                 type="tel"
                 pattern="[0-9]{10}"
@@ -132,11 +138,11 @@ const Signup = () => {
         {userType === 'warehouse owner' && (
           <>
             <div>
-              <label>Warehouse Owner Name:</label>
+              <label>Warehouse Name:</label>
               <input
                 type="text"
-                value={setWarehouseOwnerName}
-                onChange={(e) => setWarehouseOwnerName(e.target.value)}
+                value={WarehouseName}
+                onChange={(e) => setWarehouseName(e.target.value)}
                 required
               />
 
@@ -155,7 +161,7 @@ const Signup = () => {
                 required
               />
 
-              <label>Mobile:</label>
+              <label>Mobile No:</label>
               <input
                 type="tel"
                 pattern="[0-9]{10}"
