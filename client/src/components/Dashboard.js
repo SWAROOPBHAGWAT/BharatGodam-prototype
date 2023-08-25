@@ -26,7 +26,7 @@ function Dashboard() {
     <li><a href="#">ABOUT US</a></li>
     {/* Update the SIGN IN link to use Link */}
     <li><Link to="/login" className="signin">SIGN IN</Link></li>
-    <li><a href="#" className="signup">SIGN UP</a></li>
+    <li><a href="/signup" className="signup">SIGN UP</a></li>
   </ul>
 </nav>
       {/* Navigation Bar */}
