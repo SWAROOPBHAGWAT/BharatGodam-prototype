@@ -3,7 +3,7 @@ import './AddWarehouseForm.css';
 
 
 
-
+const server_uri="http://localhost:4000"
 function AddWarehouseForm() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -32,7 +32,7 @@ function AddWarehouseForm() {
     formData.append('image', image);
   
     try {
-      const response = await fetch('/api/warehouses/add', {
+      const response = await fetch(server_uri+'/api/warehouses/add', {
         method: 'POST',
         body: formData,
       });

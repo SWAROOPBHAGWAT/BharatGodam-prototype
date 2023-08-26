@@ -28,7 +28,7 @@ app.use('/api/warehouses', warehousesRoutes);
 console.log('inside server');
 
 // Port
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4000;
 
 // Start the server
 const server = app.listen(port, () =>
