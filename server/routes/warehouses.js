@@ -10,9 +10,8 @@ const upload = multer({ storage: storage });
 // POST route to add a new warehouse
 router.post('/add', upload.single('image'), async (req, res) => {
   try {
-    console.log('reached inside')
     const { name, description, size, location } = req.body;
-    const image = req.file ? req.file.buffer : null; // Handle case where no image is uploaded
+    const image = req.file ? req.file.buffer : null;
 
     // Create a new Warehouse instance with the provided data
     const newWarehouse = new Warehouse({
@@ -33,5 +32,17 @@ router.post('/add', upload.single('image'), async (req, res) => {
   }
 });
 
-module.exports = router;
+// GET request to fetch all warehouses
+// GET request to fetch all warehouses
+router.get('/fetch', async (req, res) => {
+  try {
+    const warehouses = await Warehouse.find();
+    res.status(200).json(warehouses);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
+
+module.exports = router;
