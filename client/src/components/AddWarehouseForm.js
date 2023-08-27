@@ -55,10 +55,11 @@ function AddWarehouseForm() {
   
 
   return (
-    <div>
+    
+    <div className='add-warehouse-form'> 
       <h2>Add New Warehouse</h2>
       <form onSubmit={handleSubmit}>
-        <input
+        <input 
           type="text"
           placeholder="Warehouse Name"
           value={name}
