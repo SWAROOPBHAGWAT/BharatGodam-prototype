@@ -7,14 +7,16 @@
   align-items: center;
   justify-content: center; /* Vertically center the content */
   height: 100vh; /* Use the full viewport height */
-  background-color: #f0f0f0; /* Nice background color */
+  background-color: transparent; /* Nice background color */
+  /* font-weight: bolder; */
 }
 
 /* Style for the dashboard heading */
 .dashboard-heading {
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 40px;
+  margin-bottom: 30px;
   text-align: center;
+  color: #fff;
 }
 
 /* Style for the form container */
@@ -55,4 +57,71 @@
 /* Style for form button on hover */
 .form-button:hover {
   background-color: #0056b3;
+}
+
+/* Navbar.css */
+
+/* .navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #007bff;
+  margin-top: 45px;
+  padding: 0 20px; /* Add padding to the sides */
+  /* color: white;
+} */ */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  position: relative; /* Add this */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0; 
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.navbar-title {
+  margin: 0;
+  font-size: 24px;
+}
+
+.navbar-icons {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-icons i {
+  font-size: 24px;
+  margin-left: 20px;
+  cursor: pointer;
+} 
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+} 
+
+.dropdown-icon:hover + .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
 }
