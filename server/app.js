@@ -22,6 +22,11 @@ mongoose
 app.use(morgan("dev"));
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
+app.use(cors({
+  origin: 'http://localhost:3000', // Change this to your frontend's URL
+  credentials: true
+}));
+
 
 // Routes
 app.use('/api/warehouses', warehousesRoutes);

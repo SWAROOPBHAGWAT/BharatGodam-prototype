@@ -1,0 +1,44 @@
+/* FarmersDashboard.css */
+
+.farmers-dashboard {
+    padding: 20px;
+  }
+  
+  .warehouse-cards {
+    display: flex; /* Align cards horizontally */
+    flex-wrap: wrap; /* Allow cards to wrap onto new rows */
+    gap: 20px;
+  }
+  
+  .warehouse-card {
+    border: 1px solid #003088;
+    padding: 20px;
+    background-color: #292936;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    flex: 1; /* Distribute space evenly among cards */
+    max-width: calc(33.33% - 20px); /* Limit card width */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  
+  .warehouse-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .warehouse-card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .warehouse-card p {
+    margin: 10px 0;
+    color: #666;
+  }
+  
+  .warehouse-card img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+  

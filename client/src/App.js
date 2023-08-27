@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Signup from './components/Signup';
 import WarehouseOwnerDashboard from './components/WarehouseOwnerDashboard';
+import FarmersDashboard from './components/FarmersDashboard';
 
 
 
@@ -17,7 +18,8 @@ function App() {
           
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Dashboard />} />  */}
-          <Route path="/" element={<WarehouseOwnerDashboard />} /> 
+          { <Route path="/" element={<WarehouseOwnerDashboard />} />  }
+          <Route path="/FarmersDashboard" element={<FarmersDashboard/>} />
 
         </Routes>
       </div>
