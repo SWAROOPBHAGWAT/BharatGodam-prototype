@@ -1,4 +1,5 @@
-/* WarehouseOwnerDashboard.css */
+WarehouseOwnerDashboard.css
+
 
 /* Style for the entire dashboard container */
 .dashboard-container {
@@ -16,12 +17,17 @@
   font-size: 40px;
   margin-bottom: 30px;
   text-align: center;
-  color: #fff;
+  color: #000000;
+  align-items: center;
+  background-color: #ffb82a; /* Change this color to your desired background color */
 }
+
 
 /* Style for the form container */
 .form-container {
   width: 400px;
+  position: relative;
+  left: 60px;
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
