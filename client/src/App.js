@@ -9,22 +9,43 @@ import FarmersDashboard from './components/FarmersDashboard';
 
 
 
+// function App() {
+//   return (
+//     <Router>
+      
+//         <Routes>
+//          <Route path="/signup" element={<Signup />} />
+          
+//           <Route path="/login" element={<Login />} />
+//           <Route path="/" element={<Dashboard />} />  
+//          <Route path="/WarehouseOwnerDashboard" element={<WarehouseOwnerDashboard />} />  
+//         <Route path="/FarmersDashboard" element={<FarmersDashboard />}/>
+
+//         </Routes>
+      
+//     </Router>
+//   );
+// }
+
 function App() {
+
   return (
     <Router>
       
-        <Routes>
-         <Route path="/signup" element={<Signup />} />
+//         <Routes>
+//          <Route path="/signup" element={<Signup />} />
           
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Dashboard />} />  
-         <Route path="/WarehouseOwnerDashboard" element={<WarehouseOwnerDashboard />} />  
-        <Route path="/FarmersDashboard" element={<FarmersDashboard />}/>
+//           <Route path="/login" element={<Login />} />
+//           <Route path="/" element={<Dashboard />} />  
+//          <Route path="/WarehouseOwnerDashboard" element={<WarehouseOwnerDashboard />} />  
+//         <Route path="/FarmersDashboard" element={<FarmersDashboard />}/>
 
-        </Routes>
+//         </Routes>
       
-    </Router>
+//     </Router>
   );
 }
 
 export default App;
+
+// export default App;
