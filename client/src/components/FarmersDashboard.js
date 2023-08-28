@@ -50,6 +50,9 @@
 // export default FarmersDashboard;
 import React, { useState, useEffect } from 'react';
 import './FarmersDashboard.css';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:4000');
 
 function FarmersDashboard() {
   const [warehouses, setWarehouses] = useState([]);
@@ -77,9 +80,11 @@ function FarmersDashboard() {
     const confirmation = window.confirm("Do you want to book this warehouse?");
     if (confirmation) {
       // Send a request to the warehouse owner or perform necessary actions
+      socket.emit('bookWarehouse', warehouseId);
       alert("Your request to book this warehouse has been sent to the owner.");
     }
   };
+
 
   return (
     <div className="farmers-dashboard">
@@ -108,7 +113,10 @@ function FarmersDashboard() {
         <p>Description: {warehouse.description}</p>
         <p>Size: {warehouse.size}</p>
         <p>Location: {warehouse.location}</p>
-        <button className="book-now-button">Book Now</button>
+        {/* <button className="book-now-button">Book Now</button> */}
+        <button className="book-now-button" onClick={() => handleBookNow(warehouse._id)}>
+              Book Now
+        </button>
       </div>
     </div>
   ))}
@@ -117,5 +125,7 @@ function FarmersDashboard() {
     
   );
 }
+
+
 
 export default FarmersDashboard;
