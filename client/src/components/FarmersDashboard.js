@@ -87,19 +87,25 @@ function FarmersDashboard() {
       </nav>
 
       <div className="warehouse-cards">
-        {warehouses.map((warehouse) => (
-          <div className="warehouse-card" key={warehouse._id}>
-            <h3>{warehouse.name}</h3>
-            <p>{warehouse.description}</p>
-            <p>Size: {warehouse.size}</p>
-            <p>Location: {warehouse.location}</p>
-            {warehouse.image && (
-              <img src={`data:image/jpeg;base64,base64ImageDataHere,${warehouse.image}`} alt={warehouse.name} />
-            )}
-          </div>
-        ))}
+  {warehouses.map((warehouse) => (
+    <div className="warehouse-card" key={warehouse._id}>
+      {warehouse.image && (
+        <div className="card-image">
+          <img src={`data:image/jpeg;base64,${warehouse.image}`} alt={warehouse.name} />
+        </div>
+      )}
+      <div className="card-content">
+        <h3>Warehouse Owner: {warehouse.name}</h3>
+        <p>Description: {warehouse.description}</p>
+        <p>Size: {warehouse.size}</p>
+        <p>Location: {warehouse.location}</p>
+        <button className="book-now-button">Book Now</button>
       </div>
     </div>
+  ))}
+</div>
+      </div>
+    
   );
 }
 
