@@ -10,7 +10,7 @@ const upload = multer({ storage: storage });
 // POST route to add a new warehouse
 router.post('/add', upload.single('image'), async (req, res) => {
   try {
-    const { name, description, size, location } = req.body;
+    const { name, description, size, location ,book} = req.body;
     const image = req.file ? req.file.buffer : null;
 
     // Create a new Warehouse instance with the provided data
@@ -20,6 +20,7 @@ router.post('/add', upload.single('image'), async (req, res) => {
       size,
       location,
       image,
+      book,
     });
 
     // Save the new warehouse document to the database

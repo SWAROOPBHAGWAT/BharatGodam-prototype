@@ -1,40 +1,46 @@
 import React, { useState } from 'react';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [userType, setUserType] = useState('farmer');
-  const [email, setEmail] = useState('');  
-  const [adminId, setAdminId] = useState(''); 
+  const [email, setEmail] = useState('');
+  const [adminId, setAdminId] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Initialize the useNavigate hook
 
   const handleLogin = (e) => {
     e.preventDefault();
     switch (userType) {
       case 'farmer':
-        // Perform client login logic here
-        
-        console.log('Email:', email);
-        console.log('Password:', password);
+        // Perform client login logic for farmers
+        console.log('Farmer Email:', email);
+        console.log('Farmer Password:', password);
+
+        // Navigate to Farmer Dashboard
+        navigate('/FarmersDashboard');
         break;
       case 'warehouse owner':
-        // Perform business login logic here
-        console.log('Email:', email);
-        
-        console.log('Password:', password);
+        // Perform business login logic for warehouse owners
+        console.log('Warehouse Owner Email:', email);
+        console.log('Warehouse Owner Password:', password);
+
+        // Navigate to Warehouse Owner Dashboard
+        navigate('/WarehouseOwnerDashboard');
         break;
       case 'admin':
-        // Perform admin login logic here
+        // Perform admin login logic
         console.log('Admin ID:', adminId);
         console.log('Admin Password:', password);
+
+        // Navigate to Admin Dashboard
+        // navigate('/');
         break;
       default:
         console.log('Invalid user type.');
         break;
     }
   };
-
- 
 
   const handleCardClick = (type) => {
     setUserType(type);
