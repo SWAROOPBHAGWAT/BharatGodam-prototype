@@ -14,10 +14,10 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-        {/* <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
           
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Dashboard />} />  */}
+          <Route path="/" element={<Dashboard />} /> 
           { <Route path="/" element={<WarehouseOwnerDashboard />} />  }
           <Route path="/FarmersDashboard" element={<FarmersDashboard/>} />
 
