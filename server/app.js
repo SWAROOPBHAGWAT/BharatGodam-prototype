@@ -3,8 +3,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
+
 require("dotenv").config();
 const warehousesRoutes = require('./routes/warehouses');
+const userRoutes = require("./routes/user");
+const User = require('./models/user'); 
+ 
 
 // Initialize the app
 const app = express();
@@ -22,18 +26,55 @@ mongoose
 app.use(morgan("dev"));
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
-app.use(cors({
-  origin: 'http://localhost:3000', // Change this to your frontend's URL
-  credentials: true
-}));
-
 
 // Routes
 app.use('/api/warehouses', warehousesRoutes);
 console.log('inside server');
+app.use("/api/users", userRoutes);
   
 // Port
-const port = process.env.PORT || 4000;
+const port = 4000;
+// const User= mongoose.model("users");
+app.post('/api/signup',async (req, res)=>{
+  console.log(req.body);
+  const{userType,
+    name,
+    address,
+    // kyc,
+    mobile,
+    email,
+    document,
+    warehouseName,
+    adminId,
+    password,
+    warehouseType}=req.body;
+  try{
+    await User.create({
+      userType,
+      name,
+      address,
+      // kyc,
+      mobile,
+      email,
+      document,
+      warehouseName,
+      adminId,
+      password,
+      warehouseType,
+    });
+    res.send({status:"ok"});
+  }
+  catch(error){
+    console.log("error");
+    res.send({status:" signup error",error})
+  }
+});
+
+app.post("/login-user",async(req,res)=>{
+  const{email,password}=req.body;
+
+  
+})
 
 // Start the server
 const server = app.listen(port, () =>
