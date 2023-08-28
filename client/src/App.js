@@ -12,17 +12,17 @@ import FarmersDashboard from './components/FarmersDashboard';
 function App() {
   return (
     <Router>
-      <div className="App">
+      
         <Routes>
-        {/* <Route path="/signup" element={<Signup />} />
+         <Route path="/signup" element={<Signup />} />
           
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Dashboard />} />  */}
-          { <Route path="/" element={<WarehouseOwnerDashboard />} />  }
-          <Route path="/FarmersDashboard" element={<FarmersDashboard/>} />
+          <Route path="/" element={<Dashboard />} />  
+         <Route path="/WarehouseOwnerDashboard" element={<WarehouseOwnerDashboard />} />  
+        <Route path="/FarmersDashboard" element={<FarmersDashboard />}/>
 
         </Routes>
-      </div>
+      
     </Router>
   );
 }

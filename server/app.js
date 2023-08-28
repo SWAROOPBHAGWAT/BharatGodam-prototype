@@ -31,7 +31,7 @@ app.use(cors({
 // Routes
 app.use('/api/warehouses', warehousesRoutes);
 console.log('inside server');
-
+  
 // Port
 const port = process.env.PORT || 4000;
 

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Signup.css';
+import { Link } from 'react-router-dom';
+import Login from './Login';
 
 
 const Signup = () => {
@@ -225,7 +227,7 @@ const Signup = () => {
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <Link to={'/Login'}><button type="submit">Sign Up</button></Link>
       </form>
 
     </div>
