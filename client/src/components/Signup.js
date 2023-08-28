@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Signup.css';
-import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
 const Signup = () => {
@@ -269,10 +268,7 @@ const Signup = () => {
             required
           />
         </div>
-        <button type="submit" onClick={handleSignup}>
-          Sign Up
-        </button>
-
+        <button type="submit">Sign Up</button>
       </form>
 
     </div>

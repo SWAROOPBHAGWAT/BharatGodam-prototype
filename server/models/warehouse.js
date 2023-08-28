@@ -5,7 +5,8 @@ const warehouseSchema = new mongoose.Schema({
   description: String,
   size: String,
   location: String,
-  image: Buffer
+  image: Buffer,
+  book: Boolean
 });
 
 const Warehouse = mongoose.model('Warehouse', warehouseSchema);

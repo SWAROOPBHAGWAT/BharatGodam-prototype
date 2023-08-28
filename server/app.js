@@ -31,6 +31,7 @@ app.use(express.json());
 app.use('/api/warehouses', warehousesRoutes);
 console.log('inside server');
 app.use("/api/users", userRoutes);
+  
 // Port
 const port = 4000;
 // const User= mongoose.model("users");
