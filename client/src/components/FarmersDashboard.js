@@ -72,6 +72,15 @@ function FarmersDashboard() {
     }
   };
 
+
+  const handleBookNow = (warehouseId) => {
+    const confirmation = window.confirm("Do you want to book this warehouse?");
+    if (confirmation) {
+      // Send a request to the warehouse owner or perform necessary actions
+      alert("Your request to book this warehouse has been sent to the owner.");
+    }
+  };
+
   return (
     <div className="farmers-dashboard">
       <nav className="navbar">
@@ -96,6 +105,7 @@ function FarmersDashboard() {
             {warehouse.image && (
               <img src={`data:image/jpeg;base64,base64ImageDataHere,${warehouse.image}`} alt={warehouse.name} />
             )}
+            <button onClick={() => handleBookNow(warehouse._id)}>Book Now</button>
           </div>
         ))}
       </div>

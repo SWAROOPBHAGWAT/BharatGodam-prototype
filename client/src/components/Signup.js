@@ -1,47 +1,80 @@
 import React, { useState } from 'react';
 import './Signup.css';
+import { useHistory } from 'react-router-dom';
 
-
+import axios from 'axios';
 const Signup = () => {
   const [userType, setUserType] = useState('farmer');
-  const [name, setname] = useState('');
-  const [address, setAddress] = useState('')
-  const [kyc, setKyc] = useState('')
-  const [mobile, setMobile] = useState('')
-  const [email, setEmail] = useState('')
-  const [document, setDocument] = useState('')
-  const [WarehouseName, setWarehouseName] = useState('');
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  // const [kyc, setKyc] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [email, setEmail] = useState('');
+  const [document, setDocument] = useState('');
+  // const [warehouseName, setWarehouseName] = useState('');
   const [adminId, setAdminId] = useState('');
   const [password, setPassword] = useState('');
   const [warehouseType, setWarehouseType] = useState('dry');
 
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    try {
+      const userData = {
+        userType,
+        name,
+        address,
+        // kyc,
+        mobile,
+        email,
+        document,
+        // warehouseName,
+        adminId,
+        password,
+        warehouseType,
+      };
+
+      // Send the user data to the backend API
+      const response = await axios.post('http://localhost:4000/api/signup', userData)
+
+      console.log('Signup response:', response.data);
+
+      // Handle success or show appropriate message to the user
+    } catch (error) {
+      console.error('Signup error:', error);
+      // Handle error or show appropriate error message to the user
+    }
+
+    history.push('/Login')
+  };
+
 
   const handleLogin = (e) => {
     e.preventDefault();
+
     switch (userType) {
       case 'farmer':
         // Perform client login logic here
-        console.log('user type',userType)
+        console.log('user type', userType)
         console.log('Name:', name);
         console.log('Password:', password);
         console.log('Address:', address);
         console.log('Mobile:', mobile)
-        console.log('Kyc:', kyc)
+        // console.log('Kyc:', kyc)
         break;
       case 'warehouse owner':
         // Perform business login logic here
-        console.log('Warehouse Name:', WarehouseName);
-        console.log('user type',userType)
+        // console.log('Warehouse Name:', warehouseName);
+        console.log('user type', userType)
         console.log('Password:', password);
         console.log('Address:', address);
         console.log('Mobile:', mobile)
-        console.log('Kyc:', kyc)
-        console.log('Documents:',document)
-        console.log('WarehouseType:',warehouseType)
+        // console.log('Kyc:', kyc)
+        console.log('Documents:', document)
+        console.log('WarehouseType:', warehouseType)
         break;
       case 'admin':
         // Perform admin login logic here
-        console.log('user type',userType)
+        console.log('user type', userType)
         console.log('Admin ID:', adminId);
         console.log('Admin Password:', password);
         break;
@@ -51,13 +84,22 @@ const Signup = () => {
     }
   };
 
-
+  const handleDocumentChange = (e) => {
+    const selectedDocument = e.target.files[0];
+    setDocument(selectedDocument);
+  
+    // Create a URL for the selected document to preview it
+    const documentURL = URL.createObjectURL(selectedDocument);
+    // setDocumentPreview(documentURL);
+  };
+  
 
   const handleCardClick = (type) => {
     setUserType(type);
   };
 
   return (
+    
     <div className="container">
       <h2>SignUp</h2>
       <div className="card-container" >
@@ -89,7 +131,7 @@ const Signup = () => {
               <input
                 type="text"
                 value={name}
-                onChange={(e) => setname(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 required
               />
               <label>Address:</label>
@@ -99,13 +141,13 @@ const Signup = () => {
                 onChange={(e) => setAddress(e.target.value)}
                 required
               />
-              <label>KYC:</label>
+              {/* <label>KYC:</label>
               <input
                 type="file"
                 accept=".pdf, .doc, .docx" // Define the allowed file formats
                 onChange={(e) => setKyc(e.target.files[0])}
                 required
-              />
+              /> */}
 
               <label>Mobile No:</label>
               <input
@@ -128,7 +170,7 @@ const Signup = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                // pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
                 placeholder="Enter a valid email id"
               />
 
@@ -138,11 +180,11 @@ const Signup = () => {
         {userType === 'warehouse owner' && (
           <>
             <div>
-              <label>Warehouse Name:</label>
+            <label>Name:</label>
               <input
                 type="text"
-                value={WarehouseName}
-                onChange={(e) => setWarehouseName(e.target.value)}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 required
               />
 
@@ -153,13 +195,13 @@ const Signup = () => {
                 onChange={(e) => setAddress(e.target.value)}
                 required
               />
-              <label>KYC:</label>
+              {/* <label>KYC:</label>
               <input
                 type="file"
                 accept=".pdf, .doc, .docx" // Define the allowed file formats
                 onChange={(e) => setKyc(e.target.files[0])}
                 required
-              />
+              /> */}
 
               <label>Mobile No:</label>
               <input
@@ -182,14 +224,16 @@ const Signup = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                // pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
                 placeholder="Enter a valid email id"
               />
               <label>Documents :</label>
               <input
                 type="file"
                 accept=".pdf, .doc, .docx" // Define the allowed file formats
-                onChange={(e) => setDocument(e.target.files[0])}
+                capture="environment"
+                onChange={handleDocumentChange}
+
                 required
               />
               <div>
@@ -225,7 +269,10 @@ const Signup = () => {
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit" onClick={handleSignup}>
+          Sign Up
+        </button>
+
       </form>
 
     </div>

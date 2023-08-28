@@ -325,10 +325,13 @@
       width: 100%;
     }
   }
-  #preetesh{
+  #preetesh {
     font-weight: bold;
+    text-align: center; /* Center the content horizontally */
+    display: flex; /* Enable flexbox layout */
+    justify-content: center; /* Center the content vertically */
   }
-
+  
   #preetesh:hover {
     background-color: #FF4500; /* New background color on hover */
   }
