@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './Signup.css';
-import { Link , useHistory } from 'react-router-dom';
-import Login from './Login';
-
+// import { useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 const Signup = () => {
+  const navigate =useNavigate()
   const [userType, setUserType] = useState('farmer');
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
@@ -45,7 +45,8 @@ const Signup = () => {
       // Handle error or show appropriate error message to the user
     }
 
-    history.push('/Login')
+    navigate('/Login');
+
   };
 
 
@@ -83,24 +84,25 @@ const Signup = () => {
         console.log('Invalid user type.');
         break;
     }
+    navigate('/Login');
   };
 
   const handleDocumentChange = (e) => {
     const selectedDocument = e.target.files[0];
     setDocument(selectedDocument);
-  
+
     // Create a URL for the selected document to preview it
     const documentURL = URL.createObjectURL(selectedDocument);
     // setDocumentPreview(documentURL);
   };
-  
+
 
   const handleCardClick = (type) => {
     setUserType(type);
   };
 
   return (
-    
+
     <div className="container">
       <h2>SignUp</h2>
       <div className="card-container" >
@@ -181,7 +183,7 @@ const Signup = () => {
         {userType === 'warehouse owner' && (
           <>
             <div>
-            <label>Name:</label>
+              <label>Name:</label>
               <input
                 type="text"
                 value={name}
@@ -270,8 +272,12 @@ const Signup = () => {
             required
           />
         </div>
-        <Link to={'/Login'}><button type="submit">Sign Up</button></Link>
-        
+
+
+        <button type="submit" onClick={handleSignup}>
+          Sign Up
+        </button>
+
       </form>
 
     </div>
