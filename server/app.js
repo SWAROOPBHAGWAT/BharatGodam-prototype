@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
+const bcrypt = require('bcrypt');
 
 require("dotenv").config();
 const warehousesRoutes = require('./routes/warehouses');
@@ -35,46 +36,72 @@ app.use("/api/users", userRoutes);
 // Port
 const port = 4000;
 // const User= mongoose.model("users");
-app.post('/api/signup',async (req, res)=>{
+app.post('/api/signup', async (req, res) => {
   console.log(req.body);
-  const{userType,
+  const {
+    userType,
     name,
     address,
-    // kyc,
     mobile,
     email,
     document,
     warehouseName,
     adminId,
     password,
-    warehouseType}=req.body;
-  try{
+    warehouseType,
+  } = req.body;
+
+  try {
+    // Hash the password before storing it
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     await User.create({
       userType,
       name,
       address,
-      // kyc,
       mobile,
       email,
       document,
       warehouseName,
       adminId,
-      password,
+      password: hashedPassword, // Store the hashed password
       warehouseType,
     });
-    res.send({status:"ok"});
-  }
-  catch(error){
-    console.log("error");
-    res.send({status:" signup error",error})
+
+    res.send({ status: "ok" });
+  } catch (error) {
+    console.log(error);
+    res.send({ status: "signup error", error });
   }
 });
 
-app.post("/login-user",async(req,res)=>{
-  const{email,password}=req.body;
 
-  
-})
+
+// Login route
+app.post('/login-user', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.json({ status: 'error', error: 'User not found' });
+    }
+
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+    if (isPasswordMatch) {
+      return res.json({ status: 'ok', token: 'your_generated_token' });
+    } else {
+      return res.json({ status: 'error', error: 'Invalid credentials' });
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ status: 'error', error: 'Server error' });
+  }
+});
+
+
 
 // Start the server
 const server = app.listen(port, () =>

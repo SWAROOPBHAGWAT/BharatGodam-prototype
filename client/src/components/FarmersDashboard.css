@@ -94,6 +94,7 @@
 .search-form button:hover {
   background-color: #2980b9;
 }
+
 .warehouse-cards {
   display: flex;
   flex-wrap: wrap;
@@ -101,7 +102,8 @@
   max-height: 500px;
   overflow-y: auto;
   padding: 20px;
-  justify-content: center; /* Center the cards horizontally */
+  justify-content: center;
+  /* Center the cards horizontally */
   display: flex;
 
 }
@@ -125,7 +127,8 @@
 
 .warehouse-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 0 4px #3498db33; /* Adding a highlight */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 0 4px #3498db33;
+  /* Adding a highlight */
 }
 
 .warehouse-card h3 {
@@ -164,7 +167,7 @@
   background-color: #3498db;
   color: white;
   border: none;
-  padding: 10px 0px 9px 0px ;
+  padding: 10px 0px 9px 0px;
 
   border-radius: 200px;
   cursor: pointer;
@@ -247,6 +250,7 @@
   .warehouse-card h3 {
     margin-top: 0;
   }
+
   /* Responsive styles */
   @media screen and (max-width: 768px) {
     .navbar-container {

@@ -1,44 +1,69 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
+  // State variables to store user input and login status
   const [userType, setUserType] = useState('farmer');
   const [email, setEmail] = useState('');
   const [adminId, setAdminId] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoginSuccessful, setIsLoginSuccessful] = useState(false); // Track login success
   const navigate = useNavigate(); // Initialize the useNavigate hook
 
-  const handleLogin = (e) => {
+  // Function to handle login attempt
+  const handleLogin = async (e) => {
     e.preventDefault();
+
     switch (userType) {
       case 'farmer':
         // Perform client login logic for farmers
         console.log('Farmer Email:', email);
         console.log('Farmer Password:', password);
+        // Set isLoginSuccessful to true if the login is successful
+        // isLoginSuccessful = true;
 
         // Navigate to Farmer Dashboard
-        navigate('/FarmersDashboard');
+        // navigate('/FarmersDashboard');
+        
         break;
       case 'warehouse owner':
         // Perform business login logic for warehouse owners
         console.log('Warehouse Owner Email:', email);
         console.log('Warehouse Owner Password:', password);
-
+        // Set isLoginSuccessful to true if the login is successful
+        // isLoginSuccessful = true;
         // Navigate to Warehouse Owner Dashboard
-        navigate('/WarehouseOwnerDashboard');
+        // navigate('/WarehouseOwnerDashboard');
         break;
       case 'admin':
         // Perform admin login logic
         console.log('Admin ID:', adminId);
         console.log('Admin Password:', password);
-
+        // Set isLoginSuccessful to true if the login is successful
+        // isLoginSuccessful = true;
         // Navigate to Admin Dashboard
         // navigate('/');
         break;
       default:
         console.log('Invalid user type.');
         break;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:4000/login-user', { email, password });
+
+      if (response.data.status === 'ok') {
+        setIsLoginSuccessful(true);
+        const token = response.data.token;
+        console.log('Login successful');
+        console.log('Token:', token);
+      } else {
+        console.log('Login failed:', response.data.error);
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
     }
   };
 
@@ -127,6 +152,13 @@ const Login = () => {
         <button type="submit">Login</button>
       </form>
       <Link to="/signup">Sign Up</Link>
+      {isLoginSuccessful && (
+        <>
+          {userType === 'farmer' && <Link to="/FarmersDashboard">Go to Farmer Dashboard</Link>}
+          {userType === 'warehouse owner' && <Link to="/WarehouseOwnerDashboard">Go to Warehouse Owner Dashboard</Link>}
+          {userType === 'admin' && <Link to="/AdminDashboard">Go to Admin Dashboard</Link>}
+        </>
+      )}
     </div>
     
   );

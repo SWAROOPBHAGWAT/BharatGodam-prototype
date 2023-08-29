@@ -50,6 +50,9 @@
 // export default FarmersDashboard;
 import React, { useState, useEffect } from 'react';
 import './FarmersDashboard.css';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:4000');
 
 function FarmersDashboard() {
   const [warehouses, setWarehouses] = useState([]);
@@ -77,8 +80,68 @@ function FarmersDashboard() {
     const confirmation = window.confirm("Do you want to book this warehouse?");
     if (confirmation) {
       // Send a request to the warehouse owner or perform necessary actions
+      socket.emit('bookWarehouse', warehouseId);
       alert("Your request to book this warehouse has been sent to the owner.");
     }
+  };
+
+  const warehouse1 = 12000;
+  const warehouse2 = 10000;
+  var formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "INR",
+
+    // These options are needed to round to whole numbers if that's what you want.
+    minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  });
+
+  const loadScript = (src) => {
+    return new Promise((resovle) => {
+      const script = document.createElement("script");
+      script.src = src;
+
+      script.onload = () => {
+        resovle(true);
+      };
+
+      script.onerror = () => {
+        resovle(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+
+  const displayRazorpay = async (amount) => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      alert("You are offline... Failed to load Razorpay SDK");
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_lQ12FPA25FtT13",
+      currency: "INR",
+      amount: amount * 100,
+      name: "BharatGodam",
+      description: "Thanks for purchasing",
+      
+
+      handler: function (response) {
+        alert(response.razorpay_payment_id);
+        alert("Payment Successfully");
+      },
+      prefill: {
+        name: "BharatGodam",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
   };
 
   return (
@@ -108,7 +171,10 @@ function FarmersDashboard() {
         <p>Description: {warehouse.description}</p>
         <p>Size: {warehouse.size}</p>
         <p>Location: {warehouse.location}</p>
-        <button className="book-now-button">Book Now</button>
+        {/* <button className="book-now-button">Book Now</button> */}
+        <button className="book-now-button" onClick={() => displayRazorpay(warehouse1)}>
+              Book Now
+        </button>
       </div>
     </div>
   ))}
@@ -117,5 +183,7 @@ function FarmersDashboard() {
     
   );
 }
+
+
 
 export default FarmersDashboard;
